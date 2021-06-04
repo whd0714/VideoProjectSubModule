@@ -64,7 +64,8 @@ function VideoUploadPage(props) {
                         {headers:{'content-type':'application/json; charset=UTF-8'}})
                         .then(response=>{
                             if(response.data.success) {
-                                setThumbnailPath(response.data.thumbnailPath)
+                                console.log(response.data)
+                                setThumbnailPath(response.data.filepath)
 
                             } else {
                                 alert('썸네일 생성 실패');
@@ -117,7 +118,7 @@ function VideoUploadPage(props) {
                 </select>
                 <br/>
                 <br/>
-                <select onChane={onCategoryHandler}>
+                <select onChange={onCategoryHandler}>
                     {onCategoryOptions.map((item, index)=>(
                         <option value={item.value} key={index}>{item.label}</option>
                     ))}
