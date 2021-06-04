@@ -50,7 +50,7 @@ function LoginPage(props) {
                 <br/>
 
                 <label>Password</label>
-                <Input value={password} onChange={onPasswordHandler}></Input>
+                <Input type="password" value={password} onChange={onPasswordHandler}></Input>
                 <br/>
                 <br/>
 

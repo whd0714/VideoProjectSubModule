@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { Typography, Input, Button, Form } from "antd";
+import { Typography, Input, Button, Form, message } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -28,6 +28,8 @@ function VideoUploadPage(props) {
     const [access, setAccess] = useState(0);
     const [category, setCategory] = useState(0);
     const [thumbnailPath, setThumbnailPath] = useState("");
+    const [duration, setDuration] = useState("");
+    const [filepath, setFilepath] = useState("");
 
     const onTitleHandler = (e) => {
         setTitle(e.currentTarget.value);
@@ -54,6 +56,7 @@ function VideoUploadPage(props) {
             {headers:{'content-type':'multipart/form-data; charset=UTF-8'}})
             .then(response=>{
                 if(response.data.success) {
+                    setFilepath(response.data.filepath)
                     let thumbnailData = {
                         filepath:response.data.filepath,
                         filename:response.data.filename
@@ -66,7 +69,7 @@ function VideoUploadPage(props) {
                             if(response.data.success) {
                                 console.log(response.data)
                                 setThumbnailPath(response.data.filepath)
-
+                                setDuration(response.data.duration)
                             } else {
                                 alert('썸네일 생성 실패');
                             }
@@ -79,6 +82,30 @@ function VideoUploadPage(props) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        console.log(duration)
+        let data = {
+            title : title,
+            duration : duration,
+            description : description,
+            access : access,
+            category : category,
+            filepath : filepath,
+            thumbnailPath : thumbnailPath
+        }
+
+        axios.post('/api/video/upload',
+            JSON.stringify(data),
+            {headers:{'content-type':'application/json; charset=UTF-8'}})
+            .then(response=>{
+                if(response.data.success) {
+                    message.success('비디오 업로드를 성공했습니다.')
+                    setTimeout(()=>{
+                        props.history.push('/');
+                    },2500);
+                } else {
+                    alert('비디오 업로드 실패');
+                }
+            })
     }
     return (
         <div style={{maxWidth:'700px', margin:'2rem auto'}}>

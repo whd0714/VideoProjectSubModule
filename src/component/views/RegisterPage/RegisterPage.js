@@ -49,7 +49,7 @@ function RegisterPage(props) {
                     message.success('회원가입완료');
                     setTimeout(()=>{
                         props.history.push('/')
-                    },2500)
+                    },1500)
                 } else {
                     alert('회원가입 실패')
                 }
