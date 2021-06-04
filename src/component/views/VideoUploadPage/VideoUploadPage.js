@@ -27,6 +27,7 @@ function VideoUploadPage(props) {
     const [description, setDescription] = useState("");
     const [access, setAccess] = useState(0);
     const [category, setCategory] = useState(0);
+    const [thumbnailPath, setThumbnailPath] = useState("");
 
     const onTitleHandler = (e) => {
         setTitle(e.currentTarget.value);
@@ -53,7 +54,22 @@ function VideoUploadPage(props) {
             {headers:{'content-type':'multipart/form-data; charset=UTF-8'}})
             .then(response=>{
                 if(response.data.success) {
+                    let thumbnailData = {
+                        filepath:response.data.filepath,
+                        filename:response.data.filename
+                    }
 
+                    axios.post("/api/video/thumbnail",
+                        JSON.stringify(thumbnailData),
+                        {headers:{'content-type':'application/json; charset=UTF-8'}})
+                        .then(response=>{
+                            if(response.data.success) {
+                                setThumbnailPath(response.data.thumbnailPath)
+
+                            } else {
+                                alert('썸네일 생성 실패');
+                            }
+                        })
                 } else {
                     alert('서버에 비디오 업로드를 실패햐였습니다.');
                 }
@@ -81,7 +97,9 @@ function VideoUploadPage(props) {
                         )}
                     </Dropzone>
 
-                    <img src="" alt=""/>
+                    {thumbnailPath &&
+                    <img src={`http://localhost:8080/${thumbnailPath}`} style={{width:'300px', height:'240px'}} alt=""/>
+                    }
                 </div>
                 <br/>
                 <label>Title</label>
