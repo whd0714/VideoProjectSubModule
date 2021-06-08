@@ -10,16 +10,17 @@ import LandingPage from "./component/views/LandingPage/LandingPage";
 import LoginPage from "./component/views/LoginPage/LoginPage";
 import RegisterPage from "./component/views/RegisterPage/RegisterPage";
 import VideoUploadPage from "./component/views/VideoUploadPage/VideoUploadPage";
+import Auth from './hoc/auth';
 
 function App(props) {
     return (
         <Router>
             <NavBar></NavBar>
             <Switch>
-                <Route exact path="/" component={LandingPage} />
-                <Route exact path="/login" component={LoginPage} />
-                <Route exact path="/register" component={RegisterPage} />
-                <Route exact path="/video/upload" component={VideoUploadPage} />
+                <Route exact path="/" component={Auth(LandingPage, null)} />
+                <Route exact path="/login" component={Auth(LoginPage, false)} />
+                <Route exact path="/register" component={Auth(RegisterPage, false)} />
+                <Route exact path="/video/upload" component={Auth(VideoUploadPage, true)} />
             </Switch>
         </Router>
     );

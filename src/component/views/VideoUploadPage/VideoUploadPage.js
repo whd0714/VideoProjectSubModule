@@ -4,6 +4,7 @@ import { Typography, Input, Button, Form, message } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import Dropzone from "react-dropzone";
 import axios from "axios";
+import {withRouter} from 'react-router-dom';
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -158,4 +159,4 @@ function VideoUploadPage(props) {
     );
 }
 
-export default VideoUploadPage;
+export default withRouter(VideoUploadPage);

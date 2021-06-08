@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Typography, Input, Button, Form } from "antd";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../../_actions/user_action";
-
+import {withRouter} from 'react-router-dom';
 const { Title } = Typography;
 
 function LoginPage(props) {
@@ -60,4 +60,4 @@ function LoginPage(props) {
     );
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);
