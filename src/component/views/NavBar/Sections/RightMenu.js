@@ -21,7 +21,6 @@ function RightMenu(props) {
 
     if(user.auth){
         if(!user.auth.data.success) {
-            console.log("!!" + user.auth.data.success)
             return (
                 <Menu mode={props.mode}>
                     <Menu.Item key="mail">
@@ -33,7 +32,7 @@ function RightMenu(props) {
                 </Menu>
             )
         } else {
-            console.log("!!" + user.auth.data.success)
+
             return (
                 <Menu mode={props.mode}>
                     <Menu.Item key="mail">
