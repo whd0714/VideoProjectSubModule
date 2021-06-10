@@ -17,8 +17,10 @@ export default function(SpecificComponent, option, adminRoute=null) {
                             props.history.push('/login')
                         }
                    } else {
-                       if(!option) {
-                           console.log(response.payload.data.success)
+                       if(option == null) {
+                           console.log('option == null')
+                       }
+                       else if(!option) {
                            props.history.push('/')
                        }
                    }

@@ -11,6 +11,7 @@ import LoginPage from "./component/views/LoginPage/LoginPage";
 import RegisterPage from "./component/views/RegisterPage/RegisterPage";
 import VideoUploadPage from "./component/views/VideoUploadPage/VideoUploadPage";
 import Auth from './hoc/auth';
+import VideoDetailPage from "./component/views/VideoDetailPage/VideoDetailPage";
 
 function App(props) {
     return (
@@ -21,6 +22,7 @@ function App(props) {
                 <Route exact path="/login" component={Auth(LoginPage, false)} />
                 <Route exact path="/register" component={Auth(RegisterPage, false)} />
                 <Route exact path="/video/upload" component={Auth(VideoUploadPage, true)} />
+                <Route exact path="/video/:videoId" component={Auth(VideoDetailPage, null)} />
             </Switch>
         </Router>
     );

@@ -68,7 +68,7 @@ function VideoUploadPage(props) {
                         {headers:{'content-type':'application/json; charset=UTF-8'}})
                         .then(response=>{
                             if(response.data.success) {
-                                console.log(response.data)
+                                setFilepath(response.data.videoPath)
                                 setThumbnailPath(response.data.filepath)
                                 setDuration(response.data.duration)
                             } else {
