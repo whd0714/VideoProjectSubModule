@@ -31,6 +31,7 @@ function LoginPage(props) {
         dispatch(userLogin(body))
             .then(response=> {
                 if(response.payload.success) {
+                    window.localStorage.setItem('userId', response.payload.memberId)
                     props.history.push('/');
                 }else {
                     alert('로그인 실패');

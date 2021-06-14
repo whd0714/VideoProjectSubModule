@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Input, Form, Typography, Button, message} from "antd";
 import {userRegister} from "../../../_actions/user_action";
 import {withRouter} from 'react-router-dom';
+
 const { Title } = Typography;
 
 function RegisterPage(props) {
