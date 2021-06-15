@@ -13,6 +13,7 @@ function VideoDetailPage(props) {
         videoId : videoId
     }
 
+    const [views, setViews] = useState("");
     const [videoDetail, setVideoDetail] = useState([]);
 
     useEffect(()=>{
