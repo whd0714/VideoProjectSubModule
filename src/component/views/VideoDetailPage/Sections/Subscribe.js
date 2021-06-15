@@ -23,7 +23,7 @@ function Subscribe(props) {
             creatorId: props.creator,
             subscriberId: props.subscriber
         }
-        console.log("333333" + props.creator)
+
         axios.post('/api/subscribe/subscribed',
             JSON.stringify(subscribedData),
             {headers:{'content-type':'application/json; charset=UTF-8'}})
