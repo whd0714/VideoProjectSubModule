@@ -12,7 +12,7 @@ function RightMenu(props) {
             .then(response=>{
                 if(response.data.success) {
                     props.history.push('/login');
-
+                    localStorage.removeItem("userId")
                 } else {
                     alert('로그아웃 실패')
                 }

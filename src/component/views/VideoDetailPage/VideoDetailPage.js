@@ -22,9 +22,10 @@ function VideoDetailPage(props) {
             {headers:{'content-type':'application/json; charset=UTF-8'}})
             .then(response=>{
                 if(response.data.success) {
-                    setVideoDetail(response.data.data)
+                    setVideoDetail(response.data.result2)
+                    console.log(response)
                 }else {
-                    alert('비디오 로딩 실패')
+                    //alert('비디오 로딩 실패')
                 }
             })
     },[])

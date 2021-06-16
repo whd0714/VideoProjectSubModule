@@ -16,9 +16,9 @@ function SideVideo(props) {
             {headers:{'content-type':'application/json; charset=UTF-8'}})
             .then(response=>{
                 if(response.data.success) {
-                    setSideVideos(response.data.data)
+                    setSideVideos(response.data.result2)
                 } else {
-                    alert('사이드 영상 조회 실패')
+                    //alert('사이드 영상 조회 실패')
                 }
             })
     }, []);

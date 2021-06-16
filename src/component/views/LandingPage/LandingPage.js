@@ -26,7 +26,7 @@ function LandingPage(props) {
         let minute = Math.floor(video.duration / 60);
         let second = Math.floor(video.duration - minute * 60);
 
-        return <Col key={index} lg={6} md={8} xs={24}>
+        return <Col key={index} lg={6} md={12} sm={18} xs={24}>
             <a href={`/video/${video.id}`}>
                 <div style={{position:'relative'}}>
                     <img style={{width:'300px', height:'240px'}} src={`http://localhost:8080/${video.thumbnailPath}`} alt=""/>

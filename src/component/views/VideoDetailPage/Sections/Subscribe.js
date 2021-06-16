@@ -13,8 +13,11 @@ function Subscribe(props) {
             {headers:{'content-type':'application/json; charset=UTF-8'}})
             .then(response=>{
                 if(response.data.success) {
+                    console.log("aaaaaaaaaaaa")
+                    console.log("111111111111111111111" + response)
                     setSubscribeNumber(response.data.count)
                 }else {
+
                     alert('구독자수 오류')
                 }
             })
