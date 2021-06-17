@@ -30,7 +30,7 @@ function VideoDetailPage(props) {
             })
     },[])
 
-   if(videoDetail.memberId != undefined) {
+   if(videoDetail.creatorId != undefined) {
        return (
            <Row gutter={[16,16]}>
                <Col lg={18} xs={24}>
@@ -38,7 +38,7 @@ function VideoDetailPage(props) {
 
                        <video style={{width:'100%'}} src={`http://localhost:8080/${videoDetail.filepath}`} controls/>
                        <List.Item
-                           actions={[<Subscribe creator={videoDetail.memberId} subscriber={localStorage.getItem('userId')}/>]}
+                           actions={[<Subscribe creator={videoDetail.creatorId} subscriber={localStorage.getItem('userId')}/>]}
                        >
                            <List.Item.Meta
                                avatar
