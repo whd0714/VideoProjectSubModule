@@ -4,6 +4,7 @@ import {withRouter} from 'react-router-dom';
 import axios from "axios";
 import SideVideo from "./Sections/SideVideo";
 import Subscribe from "./Sections/Subscribe";
+import Comment from "../comment/Comment";
 
 function VideoDetailPage(props) {
 
@@ -48,7 +49,7 @@ function VideoDetailPage(props) {
                                description={videoDetail.description}
                            />
                        </List.Item>
-
+                        <Comment/>
                    </div>
                </Col>
 
