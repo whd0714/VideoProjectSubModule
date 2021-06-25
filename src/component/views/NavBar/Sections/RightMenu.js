@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import axios from "axios";
 import {useSelector} from "react-redux";
-import {Menu} from 'antd';
+import { Menu, Layout } from 'antd';
 import { withRouter } from 'react-router-dom';
+import { UploadOutlined } from "@ant-design/icons";
 
 function RightMenu(props) {
     const user = useSelector(state => state.user)
+
 
     const logoutHandler = () => {
         axios.get('/api/logout')
@@ -22,8 +24,8 @@ function RightMenu(props) {
     if(user.auth){
         if(!user.auth.data.success) {
             return (
-                <Menu mode={props.mode}>
-                    <Menu.Item key="mail">
+                <Menu mode={props.mode} style={{border:'none'}}>
+                    <Menu.Item key="login">
                         <a href="/login">Signin</a>
                     </Menu.Item>
                     <Menu.Item key="app">
@@ -34,11 +36,15 @@ function RightMenu(props) {
         } else {
 
             return (
-                <Menu mode={props.mode}>
+                <Menu mode={props.mode} style={{width:'150px',border:'none'}}>
+                    <Menu.Item key="videoUpload">
+                        <a href="/video/upload">
+                            <UploadOutlined></UploadOutlined>
+                        </a>
+                    </Menu.Item>
                     <Menu.Item key="mail">
                         <a onClick={logoutHandler}>Logout</a>
                     </Menu.Item>
-
                 </Menu>
                 /*<Menu mode={props.mode}>
                     <Menu.Item key="logout">
@@ -51,7 +57,7 @@ function RightMenu(props) {
     } else {
         return (
             <Menu mode={props.mode}>
-                <Menu.Item key="mail">
+                <Menu.Item key="login">
                     <a href="/login">Signin</a>
                 </Menu.Item>
                 <Menu.Item key="app">

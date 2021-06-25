@@ -12,10 +12,14 @@
     float: left;
 }
 
-.menu-logo a {
+
+.menu-logo a>span{
     display: inline-block;
     font-size: 20px;
-    padding: 19px 20px;
+    padding: 19px 0;
+    color: black;
+    font-weight: bold;
+    letter-spacing: -1px;
 }
 
 .menu-left{
@@ -30,4 +34,9 @@
 
 .menu-box .ant-menu-horizontal{
     border-bottom: none;
+}
+
+.left_menu_container {
+    border-bottom: solid 1px #e8e8e8;
+    background-color: white;
 }

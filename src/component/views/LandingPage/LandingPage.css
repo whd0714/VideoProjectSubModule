@@ -1,0 +1,7 @@
+.landing-box > .ant-layout {
+    flex-direction: row;
+}
+.landing-box .ant-layout-sider {
+    background-color: white;
+}
+

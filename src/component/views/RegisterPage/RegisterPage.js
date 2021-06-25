@@ -1,8 +1,11 @@
 import React,{ useState } from 'react';
 import { useDispatch } from "react-redux";
-import { Input, Form, Typography, Button, message} from "antd";
+import { Input, Typography,Form, Button, message} from "antd";
 import {userRegister} from "../../../_actions/user_action";
 import {withRouter} from 'react-router-dom';
+/*import {Formik, Form, Field, ErrorMessage, useFormik} from "formik";
+import * as Yup from "yup";*/
+
 
 const { Title } = Typography;
 
@@ -58,12 +61,13 @@ function RegisterPage(props) {
     }
 
 
+
     return (
         <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', width:'100%', height:'100vh'}}>
             <div style={{maxWidth:'700px', margin:'3rem auto'}}>
                 <Title>Register</Title>
             </div>
-            <Form onSubmit={onSubmitHandler} style={{display:'flex', flexDirection:'column'}}>
+            {<Form onSubmit={onSubmitHandler} style={{display:'flex', flexDirection:'column'}}>
                 <label>Name</label>
                 <Input value={name} onChange={onNameHandler}></Input>
                 <br/>
@@ -81,8 +85,10 @@ function RegisterPage(props) {
                 <br/>
                 <br/>
                 <Button onClick={onSubmitHandler}>Register</Button>
-            </Form>
+            </Form>}
+
         </div>
+
     );
 }
 
