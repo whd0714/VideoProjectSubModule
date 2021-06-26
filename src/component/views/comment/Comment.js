@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import axios from "axios";
-
+import { useSelector } from 'react-redux';
 
 function Comment(props) {
-
+    const user = useSelector(state => state.user);
     const [commentValue, setCommentValue] = useState("");
+
+    const videoId = props.videoId;
 
     const handleClick = (e) => {
         setCommentValue(e.currentTarget.value);
@@ -15,7 +17,11 @@ function Comment(props) {
 
         const data = {
             comment : commentValue,
+            videoId : videoId,
+            memberId : user.auth.data.memberId
         }
+
+        console.log("!!!!!!!!!!!!!!" + data)
 
         axios.post("/api/comment/new/root",
             JSON.stringify(data),
@@ -40,11 +46,11 @@ function Comment(props) {
                 <textarea
                     style={{ width:'100%', borderRadius:'5px' }}
                     onChange={handleClick}
-                    value
+                    value={commentValue}
                     placeholder="코멘트를 작성해 주세요"
                 />
                 <br/>
-                <button style={{ width:'20%', height: '52px'}} onclick={onSubmit}>Submit</button>
+                <button style={{ width:'20%', height: '52px'}} onClick={onSubmit}>Submit</button>
             </form>
 
         </div>
