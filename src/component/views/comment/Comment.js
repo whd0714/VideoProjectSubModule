@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import { useSelector } from 'react-redux';
+import SingleComment from "../VideoDetailPage/Sections/SingleComment";
 
 function Comment(props) {
     const user = useSelector(state => state.user);
@@ -21,14 +22,12 @@ function Comment(props) {
             memberId : user.auth.data.memberId
         }
 
-        console.log("!!!!!!!!!!!!!!" + data)
-
         axios.post("/api/comment/new/root",
             JSON.stringify(data),
             {headers:{'content-type':'application/json; charset=UTF-8'}})
             .then(response=>{
                 if(response.data.success) {
-
+                    props.refreshFunction(response.data)
                 }else {
 
                 }
@@ -41,7 +40,6 @@ function Comment(props) {
             <p> Replies </p>
             <hr/>
 
-
             <form style={{ display:'flex' }} onSubmit={onSubmit}>
                 <textarea
                     style={{ width:'100%', borderRadius:'5px' }}
@@ -52,6 +50,13 @@ function Comment(props) {
                 <br/>
                 <button style={{ width:'20%', height: '52px'}} onClick={onSubmit}>Submit</button>
             </form>
+
+            {props.commentList && props.commentList.map((value, index)=>(
+                (!props.commentList.parentId &&
+                    <SingleComment comment={value} videoId={videoId} />
+                )
+
+            ))}
 
         </div>
     );

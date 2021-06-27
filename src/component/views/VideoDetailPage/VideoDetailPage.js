@@ -16,6 +16,7 @@ function VideoDetailPage(props) {
 
     const [views, setViews] = useState("");
     const [videoDetail, setVideoDetail] = useState([]);
+    const [commentValue, setCommentValue] = useState([]);
 
     useEffect(()=>{
         axios.post("/api/video/getVideo",
@@ -29,7 +30,28 @@ function VideoDetailPage(props) {
                     //alert('비디오 로딩 실패')
                 }
             })
+
+        axios.post("/api/comment/getComment",
+            JSON.stringify(data),
+            {headers: {'content-type':'application/json; charset=UTF-8' +
+                        ''}})
+            .then(response=>{
+                if(response.data.success) {
+                    if(response.data.result == null) {
+                        console.log("널임")
+                    } else {
+                        setCommentValue(response.data.result)
+
+                    }
+                }else {
+                    alert('댓글을 가져오는데 실패 헀습니다.');
+                }
+            })
     },[])
+
+    const refreshFunction = () => {
+
+    }
 
    if(videoDetail.creatorId != undefined) {
 
@@ -44,12 +66,12 @@ function VideoDetailPage(props) {
                            actions={[subscribeButton]}
                        >
                            <List.Item.Meta
-                               avatar
+                               avatar={<Avatar/>}
                                title={videoDetail.title}
                                description={videoDetail.description}
                            />
                        </List.Item>
-                        <Comment videoId = {videoId} />
+                       <Comment refreshFunction={refreshFunction} commentList={commentValue} videoId = {videoId}/>
                    </div>
                </Col>
 

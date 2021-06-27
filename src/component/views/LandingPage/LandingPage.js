@@ -51,6 +51,7 @@ function LandingPage(props) {
                 </a>
                 <br/>
                 <Meta
+                    avatar={<Avatar/>}
                     title={video.title}
                     description = {video.description}
                 />
