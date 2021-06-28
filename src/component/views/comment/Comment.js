@@ -27,9 +27,12 @@ function Comment(props) {
             {headers:{'content-type':'application/json; charset=UTF-8'}})
             .then(response=>{
                 if(response.data.success) {
-                    props.refreshFunction(response.data)
-                }else {
+                    console.log("!!!!!!!!!!!!!!!!!!!" + response);
 
+                    setCommentValue("")
+                    props.refreshFunction(response.data.result)
+                }else {
+                    alert()
                 }
             })
     }
@@ -53,7 +56,7 @@ function Comment(props) {
 
             {props.commentList && props.commentList.map((value, index)=>(
                 (!props.commentList.parentId &&
-                    <SingleComment comment={value} videoId={videoId} />
+                    <SingleComment refreshFunction={props.refreshFunction} comment={value} videoId={videoId} />
                 )
 
             ))}
