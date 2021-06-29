@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import axios from "axios";
 import { useSelector } from 'react-redux';
 import SingleComment from "../VideoDetailPage/Sections/SingleComment";
+import ReplyComment from "../VideoDetailPage/Sections/ReplyComment";
 
 function Comment(props) {
     const user = useSelector(state => state.user);
@@ -27,8 +28,6 @@ function Comment(props) {
             {headers:{'content-type':'application/json; charset=UTF-8'}})
             .then(response=>{
                 if(response.data.success) {
-                    console.log("!!!!!!!!!!!!!!!!!!!" + response);
-
                     setCommentValue("")
                     props.refreshFunction(response.data.result)
                 }else {
@@ -55,12 +54,13 @@ function Comment(props) {
             </form>
 
             {props.commentList && props.commentList.map((value, index)=>(
-                (!props.commentList.parentId &&
-                    <SingleComment refreshFunction={props.refreshFunction} comment={value} videoId={videoId} />
+                (value.parentId === null &&
+                    <React.Fragment>
+                        <SingleComment refreshFunction={props.refreshFunction} comment={value} videoId={videoId} />
+                        <ReplyComment refreshFunction={props.refreshFunction} parentCommentId={value.commentId} videoId={videoId} commentList={props.commentList} />
+                    </React.Fragment>
                 )
-
             ))}
-
         </div>
     );
 }

@@ -41,6 +41,7 @@ function VideoDetailPage(props) {
                         console.log("널임")
                     } else {
                         setCommentValue(response.data.result);
+
                     }
                 }else {
                     alert('댓글을 가져오는데 실패 헀습니다.');
@@ -49,6 +50,7 @@ function VideoDetailPage(props) {
     },[])
 
     const refreshFunction = (newComment) => {
+        console.log("$$$$$$$$$$$$$$$")
         setCommentValue(commentValue.concat(newComment))
     }
 
