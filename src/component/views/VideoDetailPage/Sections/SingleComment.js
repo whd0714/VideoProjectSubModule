@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {Input, Button, Comment, Avatar} from "antd";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import LikeDisLikes from "./LikeDisLikes";
 
 const { TextArea } = Input;
 
@@ -22,8 +23,6 @@ function SingleComment(props) {
 
     const onSubmit = (e) => {
         e.preventDefault();
-
-
 
         const data = {
             content : commentValue,
@@ -50,7 +49,7 @@ function SingleComment(props) {
             })
     }
 
-    const actions = [
+    const actions = [ <LikeDisLikes memberId={localStorage.getItem('userId')}  commentId={props.comment.commentId} />,
         <span onClick={openReplyClick} className="nested-comment-reply-to">Reply to</span>
     ]
 
